@@ -1,4 +1,4 @@
-# AWS Console Scripts
+# AWS Console
 
 Generate signed AWS console links.
 
