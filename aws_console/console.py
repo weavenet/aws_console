@@ -6,7 +6,14 @@ import requests
 import sys
 import urllib
 
+class Requests():
+    def get(self, url):
+        return requests.get(url)
+
 class Console():
+    def __init__(self):
+        self.requests = Requests()
+
     def __generate_federation_request_parameters(self, credentials_json):
         request_parameters = "?Action=getSigninToken"
         request_parameters += "&SessionDuration=3600"
@@ -16,7 +23,7 @@ class Console():
     def __generate_sign_in_token(self, credentials_json):
         request_parameters = self.__generate_federation_request_parameters(credentials_json)
         request_url = "https://signin.aws.amazon.com/federation" + request_parameters
-        r = requests.get(request_url)
+        r = self.requests.get(request_url)
         if (r.status_code != 200):
             raise Exception("Error getting sigin in token", r.status_code, r.text)
         return json.loads(r.text)['SigninToken']

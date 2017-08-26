@@ -30,7 +30,7 @@ Will assume a role, with external id and MFA, and generate signed console URL.
 console_via_assume_role 111122223333 user arn:aws:iam::444455556666:mfa/user
 ```
 
-## Dev
+## Dev / Test
 
 Clone down this repo and run the following
 
@@ -38,4 +38,11 @@ Clone down this repo and run the following
 virtualenv -p python3 venv
 source venv/bin/activate
 pip3 install -r requirements.txt
+pip3 install .
+```
+
+Run the tests
+
+```
+python3 aws_console/test.py
 ```
