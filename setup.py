@@ -12,7 +12,7 @@ setup(name='aws_console',
       install_requires=['boto3', 'requests'],
       entry_points = {
           'console_scripts': [
-              'console = aws_console.cli:run'
+              'aws_console = aws_console.cli:run'
               ]
           }
      )

@@ -15,7 +15,7 @@ pip3 install git+https://github.com/weavenet/aws_console
 Reads the standard [AWS credential providers](http://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials) and genertes URL.
 
 ```shell
-$ console credentials
+$ aws_console credentials
 https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=AY_....
 ```
 
@@ -24,7 +24,7 @@ https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/
 Will assume a role (optionally including external id and MFA) and generate signed console URL.
 
 ```shell
-$ console assume_role \
+$ aws_console assume_role \
 	-e \
 	-r 'arn:aws:iam::111122223333:role/read_only' \
 	-m 'arn:aws:iam::111122223333:mfa/admin'

@@ -79,7 +79,7 @@ def action_get_url_via_assume_role():
     return url
 
 def run():
-    if (len(sys.argv) < 1):
+    if (len(sys.argv) < 2):
         help("actions")
         sys.exit(1)
     action = sys.argv[1]
