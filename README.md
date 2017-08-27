@@ -4,37 +4,40 @@ Generate signed AWS console links.
 
 # Installation
 
-```
+```shell
 pip3 install git+https://github.com/weavenet/aws_console
 ```
 
 # Usage
 
-## Generating URL from environment variables
+## Generating URL from AWS credential providers
 
-Reads the standard AWS env variables and generates console link.
+Reads the standard [AWS credential providers](http://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials) and genertes URL.
 
-```
-export AWS_SESSION_TOKEN=xxx
-export AWS_SECRET_ACCESS_KEY=yyy
-export AWS_ACCESS_KEY_ID=zzz
-
-console_via_env_variables
+```shell
+$ console credentials
+https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=AY_....
 ```
 
-## Assuming role (with MFA and external id)
+## Generating URL from assumed role
 
-Will assume a role, with external id and MFA, and generate signed console URL.
+Will assume a role (optionally including external id and MFA) and generate signed console URL.
 
-```
-console_via_assume_role 111122223333 user arn:aws:iam::444455556666:mfa/user
+```shell
+$ console assume_role \
+	-e \
+	-r 'arn:aws:iam::111122223333:role/read_only' \
+	-m 'arn:aws:iam::111122223333:mfa/admin'
+External ID:
+MFA Token:
+https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=5al....
 ```
 
 ## Dev / Test
 
 Clone down this repo and run the following
 
-```
+```shell
 virtualenv -p python3 venv
 source venv/bin/activate
 pip3 install -r requirements.txt
@@ -43,6 +46,6 @@ pip3 install .
 
 Run the tests
 
-```
+```shell
 python3 aws_console/test.py
 ```

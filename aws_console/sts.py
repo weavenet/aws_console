@@ -1,28 +1,37 @@
 #!/usr/bin/env python3.6
 
 import json
-
 import boto3
 
 class Sts():
     def __init__(self, region='us-west-2'):
         self.sts_client = boto3.client('sts', region)
 
-    def assume_role(self, account_id, role_name, duration, external_id, mfa_arn, mfa_token):
-        role_arn = "arn:aws:iam::" + account_id + ":role/" + role_name
-        role_session_name = "AssumeRoleSession"
+    def assume_role(self, **kwargs):
+        role_arn = kwargs.get('role_arn')
+        mfa_arn = kwargs.get('mfa_arn')
+        duration = kwargs.get('duration')
+        external_id = kwargs.get('external_id')
+        mfa_token = kwargs.get('mfa_token')
 
-        response = self.sts_client.assume_role(RoleArn=role_arn,
-                RoleSessionName=role_session_name,
-                DurationSeconds=duration,
-                ExternalId=external_id,
-                SerialNumber=mfa_arn,
-                TokenCode=mfa_token)
+        args = {
+                'RoleSessionName': "AssumeRoleAwsConsoleSession",
+                'RoleArn': role_arn,
+                'DurationSeconds': duration
+                }
+        if (mfa_arn != None) and (mfa_token != None):
+            args['SerialNumber'] = mfa_arn
+            args['TokenCode'] = mfa_token
+
+        if external_id != None:
+            args['ExternalId'] = external_id
+
+        response = self.sts_client.assume_role(**args)
 
         tmp_credentials = {
                 'sessionId': response['Credentials']['AccessKeyId'],
                 'sessionKey': response['Credentials']['SecretAccessKey'],
-                'sessionToken':response['Credentials']['SessionToken']
+                'sessionToken': response['Credentials']['SessionToken']
                 }
 
         return json.dumps(tmp_credentials)
