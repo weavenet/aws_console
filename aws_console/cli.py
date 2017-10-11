@@ -18,7 +18,6 @@ def get_url_via_credentials():
            'sessionKey': frozen_credentials.secret_key,        
            'sessionToken': frozen_credentials.token        
            })
-    print(frozen_credentials.token)
     return Console().generate_console_url(credentials_json)
 
 def run():
