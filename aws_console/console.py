@@ -25,7 +25,7 @@ class Console():
         request_url = "https://signin.aws.amazon.com/federation" + request_parameters
         r = self.requests.get(request_url)
         if (r.status_code != 200):
-            raise Exception("Error getting sigin in token", r.status_code, r.text)
+            raise Exception("Error getting sigin in token (code {}): {}".format(r.status_code, r.text))
         return json.loads(r.text)['SigninToken']
 
     def __generate_signin_request_parameters(self, signin_token):
