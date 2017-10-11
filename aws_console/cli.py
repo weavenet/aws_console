@@ -10,11 +10,15 @@ def get_url_via_credentials():
     session = boto3.Session()        
     credentials = session.get_credentials()        
     frozen_credentials = credentials.get_frozen_credentials()        
+    if frozen_credentials.token == None:
+        raise Exception("Session token not set (aws_console requires STS credentials).")
+
     credentials_json = json.dumps({
            'sessionId': frozen_credentials.access_key,        
            'sessionKey': frozen_credentials.secret_key,        
            'sessionToken': frozen_credentials.token        
            })
+    print(frozen_credentials.token)
     return Console().generate_console_url(credentials_json)
 
 def run():
