@@ -15,7 +15,7 @@ pip3 install git+https://github.com/weavenet/aws_console
 Reads the standard [AWS credential providers](http://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials) and genertes URL.
 
 ```shell
-$ aws_console credentials
+$ aws_console
 https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=AY_....
 ```
 
