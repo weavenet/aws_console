@@ -5,7 +5,7 @@ Generate signed AWS console links.
 # Installation
 
 ```shell
-pip3 install git+https://github.com/weavenet/aws_console@v1.0.1
+pip3 install git+https://github.com/weavenet/aws_console@v1.0.2
 ```
 
 # Usage
