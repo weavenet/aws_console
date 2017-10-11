@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='aws_console',
-      version='2.0',
+      version='1.0.1',
       description='Generate signed AWS console urls',
       author='Brett Weaver',
       author_email='',
