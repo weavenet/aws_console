@@ -23,8 +23,8 @@ class TestConsole(unittest.TestCase):
         issuer = "example.org"
         c = Console()
         c.requests = RequestsStub()
-        result = c.generate_console_url(issuer, credentials_json)
-        expected = "https://signin.aws.amazon.com/federation?Action=login&Issuer=example.org&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=abc"
+        result = c.generate_console_url(credentials_json)
+        expected = "https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=abc"
         self.assertEqual(result, expected)
 
 if __name__ == '__main__':

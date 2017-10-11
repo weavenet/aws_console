@@ -17,7 +17,6 @@ class Console():
 
     def __generate_federation_request_parameters(self, credentials_json):
         request_parameters = "?Action=getSigninToken"
-        request_parameters += "&SessionDuration=3600"
         request_parameters += "&Session=" + urllib.parse.quote_plus(credentials_json)
         return request_parameters
 

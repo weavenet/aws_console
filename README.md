@@ -19,20 +19,6 @@ $ aws_console credentials
 https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=AY_....
 ```
 
-## Generating URL from assumed role
-
-Will assume a role (optionally including external id and MFA) and generate signed console URL.
-
-```shell
-$ aws_console assume_role \
-	-e \
-	-r 'arn:aws:iam::111122223333:role/read_only' \
-	-m 'arn:aws:iam::111122223333:mfa/admin'
-External ID:
-MFA Token:
-https://signin.aws.amazon.com/federation?Action=login&Issuer=https://github.com/weavenet/aws_console&Destination=https%3A%2F%2Fconsole.aws.amazon.com%2F&SigninToken=5al....
-```
-
 ## Dev / Test
 
 Clone down this repo and run the following
